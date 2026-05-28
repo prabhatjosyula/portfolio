@@ -1,266 +1,739 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="mediaqueries.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Srinivasa Prabhat Josyula | Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      background:#020617;
+      color:#f8fafc;
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:'';
+      position:fixed;
+      width:500px;
+      height:500px;
+      background:#0ea5e9;
+      filter:blur(180px);
+      top:-150px;
+      right:-150px;
+      opacity:0.2;
+      z-index:-1;
+    }
+
+    body::after{
+      content:'';
+      position:fixed;
+      width:500px;
+      height:500px;
+      background:#7c3aed;
+      filter:blur(180px);
+      bottom:-150px;
+      left:-150px;
+      opacity:0.15;
+      z-index:-1;
+    }
+
+    section{
+      padding:100px 10%;
+    }
+
+    /* NAVBAR */
+
+    nav{
+      position:fixed;
+      width:100%;
+      top:0;
+      left:0;
+      z-index:1000;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 10%;
+      background:rgba(2,6,23,0.7);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+
+    .logo{
+      font-size:1.4rem;
+      font-weight:700;
+      color:#38bdf8;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:2rem;
+      list-style:none;
+    }
+
+    .nav-links a{
+      text-decoration:none;
+      color:#e2e8f0;
+      font-weight:500;
+      transition:0.3s;
+    }
+
+    .nav-links a:hover{
+      color:#38bdf8;
+    }
+
+    /* HERO */
+
+    #profile{
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:5rem;
+      flex-wrap:wrap;
+    }
+
+    .section__pic-container img{
+      width:360px;
+      height:360px;
+      object-fit:cover;
+      border-radius:50%;
+      border:5px solid #38bdf8;
+      box-shadow:0 0 60px rgba(56,189,248,0.35);
+      transition:0.4s;
+    }
+
+    .section__pic-container img:hover{
+      transform:scale(1.03);
+    }
+
+    .section__text{
+      max-width:650px;
+    }
+
+    .section__text__p1{
+      color:#94a3b8;
+      font-size:1rem;
+      margin-bottom:0.5rem;
+    }
+
+    .title{
+      font-size:4rem;
+      line-height:1.1;
+      margin-bottom:1rem;
+      font-weight:800;
+    }
+
+    .section__text__p2{
+      font-size:1.5rem;
+      color:#38bdf8;
+      margin-bottom:2rem;
+      font-weight:600;
+    }
+
+    .hero-description{
+      color:#cbd5e1;
+      line-height:1.8;
+      margin-bottom:2rem;
+    }
+
+    /* BUTTONS */
+
+    .btn-container{
+      display:flex;
+      gap:1rem;
+      flex-wrap:wrap;
+      margin-bottom:2rem;
+    }
+
+    .btn{
+      padding:1rem 2rem;
+      border:none;
+      border-radius:14px;
+      cursor:pointer;
+      font-size:1rem;
+      font-weight:600;
+      transition:0.3s ease;
+    }
+
+    .btn-color-1{
+      background:linear-gradient(135deg,#38bdf8,#0ea5e9);
+      color:white;
+    }
+
+    .btn-color-1:hover{
+      transform:translateY(-4px);
+      box-shadow:0 10px 30px rgba(56,189,248,0.4);
+    }
+
+    .btn-color-2{
+      background:rgba(255,255,255,0.08);
+      color:white;
+      border:1px solid rgba(255,255,255,0.12);
+      backdrop-filter:blur(10px);
+    }
+
+    .btn-color-2:hover{
+      background:#1e293b;
+      transform:translateY(-4px);
+    }
+
+    /* SOCIALS */
+
+    #socials-container{
+      display:flex;
+      gap:1rem;
+    }
+
+    .icon{
+      width:55px;
+      height:55px;
+      padding:12px;
+      border-radius:50%;
+      background:rgba(255,255,255,0.08);
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .icon:hover{
+      transform:translateY(-5px);
+      background:#0ea5e9;
+    }
+
+    /* SECTION TITLES */
+
+    .section__text__p1{
+      text-transform:uppercase;
+      letter-spacing:2px;
+    }
+
+    .section-title{
+      font-size:3rem;
+      margin-bottom:4rem;
+      text-align:center;
+      font-weight:700;
+    }
+
+    /* ABOUT */
+
+    .about-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:2rem;
+      align-items:center;
+    }
+
+    .about-card{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      padding:2rem;
+      border-radius:24px;
+      backdrop-filter:blur(10px);
+      transition:0.3s;
+    }
+
+    .about-card:hover{
+      transform:translateY(-6px);
+      border-color:#38bdf8;
+    }
+
+    .about-card h3{
+      margin-bottom:1rem;
+      color:#38bdf8;
+    }
+
+    .about-card p{
+      line-height:1.8;
+      color:#cbd5e1;
+    }
+
+    /* SKILLS */
+
+    .skills-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:2rem;
+    }
+
+    .skill-card{
+      background:rgba(255,255,255,0.05);
+      padding:2rem;
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,0.08);
+      transition:0.3s;
+    }
+
+    .skill-card:hover{
+      transform:translateY(-8px);
+      border-color:#38bdf8;
+      box-shadow:0 15px 35px rgba(0,0,0,0.35);
+    }
+
+    .skill-card h3{
+      margin-bottom:1rem;
+      color:#38bdf8;
+    }
+
+    .skill-card ul{
+      list-style:none;
+    }
+
+    .skill-card li{
+      margin-bottom:0.8rem;
+      color:#cbd5e1;
+    }
+
+    /* PROJECTS */
+
+    .projects-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:2rem;
+    }
+
+    .project-card{
+      background:rgba(255,255,255,0.05);
+      border-radius:24px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.08);
+      transition:0.4s;
+    }
+
+    .project-card:hover{
+      transform:translateY(-10px);
+      border-color:#38bdf8;
+      box-shadow:0 20px 40px rgba(0,0,0,0.35);
+    }
+
+    .project-card img{
+      width:100%;
+      height:240px;
+      object-fit:cover;
+    }
+
+    .project-content{
+      padding:2rem;
+    }
+
+    .project-content h3{
+      margin-bottom:1rem;
+      color:#38bdf8;
+    }
+
+    .project-content p{
+      line-height:1.7;
+      color:#cbd5e1;
+      margin-bottom:1.5rem;
+    }
+
+    /* CONTACT */
+
+    .contact-container{
+      display:flex;
+      justify-content:center;
+      gap:2rem;
+      flex-wrap:wrap;
+    }
+
+    .contact-card{
+      background:rgba(255,255,255,0.05);
+      padding:2rem;
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,0.08);
+      width:300px;
+      text-align:center;
+      transition:0.3s;
+    }
+
+    .contact-card:hover{
+      transform:translateY(-8px);
+      border-color:#38bdf8;
+    }
+
+    .contact-card a{
+      color:#38bdf8;
+      text-decoration:none;
+    }
+
+    /* FOOTER */
+
+    footer{
+      padding:2rem;
+      text-align:center;
+      color:#94a3b8;
+      border-top:1px solid rgba(255,255,255,0.08);
+    }
+
+    /* MOBILE */
+
+    @media(max-width:768px){
+
+      nav{
+        flex-direction:column;
+        gap:1rem;
+      }
+
+      .title{
+        font-size:2.7rem;
+      }
+
+      #profile{
+        padding-top:120px;
+      }
+
+      .section__pic-container img{
+        width:280px;
+        height:280px;
+      }
+
+      section{
+        padding:80px 7%;
+      }
+
+      .nav-links{
+        gap:1rem;
+        flex-wrap:wrap;
+        justify-content:center;
+      }
+    }
+
+  </style>
 </head>
+
 <body>
-    <nav id="desktop-nav">
-        <div class="logo">Srinivasa Prabhat Josyula</div>
-        <div>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-    <nav id="hamburger-nav">
-        <div class="logo">Srinivasa Prabhat Josyula</div>
-        <div class="hamburger-menu">
-            <div class="hamburger-icon" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <div class="menu-links">
-                <li><a href="#about" onclick="toggleMenu()">About</a></li>
-                <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
-                <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-                <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-            </div>
-        </div>
-    </nav>
-    <section id="profile">
-        <div class="section__pic-container">
-            <img src="./assets/WhatsApp Image 2025-05-07 at 21.43.26_1c93cd0a.jpg" alt="Srinivasa Prabhat Profile Picture">
-        </div>
-        <div class="section__text">
-            <p class="section__text__p1">Hello, I'm</p>
-            <h1 class="title">Srinivasa Prabhat Josyula</h1>
-            <p class="section__text__p2">Software Engineer</p>
-            <div class="btn-container">
-                <button class="btn btn-color-2" onclick="window.open('./assets/SrinivasaPrabhatJosyula.pdf')">Download CV</button>
-                <button class="btn btn-color-1" onclick="location.href='./#contact'">Contact Info</button>
-            </div>
-            <div id="socials-container">
-                <img src="./assets/linkedin.png" alt="My LinkedIn Profile" class="icon" onclick="location.href='https:www.linkedin.com/in/srinijosyula'">
-                <img src="./assets/github.png" alt="My GitHub Profile" class="icon" onclick="location.href='https:www.github.com/prabhatjosyula'">
 
-            </div>
-        </div>
-        
-    </section>
-    <section id="about">
-        <p class="section__text__p1">Get To Know More</p>
-        <h1 class="title">About Me</h1>
-        <div class="section-container">
-            <div class="section__pic-container">
-                <img src="./assets/x.png" alt="Profile Picture" class="about-pic">
-            </div>
-            <div class="about-details-conatiner">
-                <div class="about-containers">
-                    <div class="details-container">
-                        <img src="./assets/experience.png" alt="experience icon" class="icon">
-                        <h3>Experience</h3>
-                        <p>2+ years <br>of Technical IT experience</p>
-                    </div>
-                    <div class="details-container">
-                        <img src="./assets/education.png" alt="education icon" class="icon">
-                        <h3>Education</h3>
-                        <p>B.Tech in Computer Science <br>M.S. in Computer Science</p>
-                    </div>
-                </div>
-                <div class="text-container">
-                    <p>
-                        I am Srinivasa Prabhat Josyula, a technology professional with a Master’s degree in Computer Science from the University of Dayton and a strong interest in building scalable, data-driven software solutions. My experience includes application development, database management, cloud technologies, and analytics, with a focus on solving real-world business problems through efficient and reliable systems.
+  <!-- NAVBAR -->
 
-Currently, I work as a Software Engineer at Magnetic Infotech, where I contribute to enterprise-scale digital evaluation and package tracking platforms using React.js, React Native, C#, .NET, and MS SQL Server. My current focus is on SQL database optimization, backend-integrated application development, analytics dashboards, and workflow automation for high-volume systems.
+  <nav>
+    <div class="logo">Srinivasa Prabhat Josyula</div>
 
-I enjoy learning new technologies, improving system performance, and building solutions that combine software engineering, cloud platforms, and data-driven insights to create meaningful impact.
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-                    </p>
-                </div>
-            </div>
-        </div>
-        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#experience'">
-    </section>
-    <section id="experience">
-        <p class="section__text__p1">Explore My</p>
-        <h1 class="title">Experience</h1>
-        <div class="experience-details-container">
-            <div class="about-containers">
-                <div class="details-container">
-                    <h2 class="experience-sub-title">Skills</h2>
-                    <div class="article-container">
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon">
-                            <div>
-                                <h3>Python</h3>
-                                <p>Experienced</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon">
-                            <div>
-                                <h3>Java</h3>
-                                <p>Experienced</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon">
-                            <div>
-                                <h3>C</h3>
-                                <p>Intermediate</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon">
-                            <div>
-                                <h3>MySQL</h3>
-                                <p>Experienced</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon">
-                            <div>
-                                <h3>React.js</h3>
-                                <p>Intermediate</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon">
-                            <div>
-                                <h3>Wireshark</h3>
-                                <p>Basic</p>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-                <div class="details-container">
-                    <h2 class="experience-sub-title">Skills</h2>
-                    <div class="article-container">
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon">
-                            <div>
-                                <h3>Open AI APIs</h3>
-                                <p>Basic</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon">
-                            <div>
-                                <h3>Crew AI</h3>
-                                <p>Intermediate</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon">
-                            <div>
-                                <h3>Prompt Engineering</h3>
-                                <p>Intermediate</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon">
-                            <div>
-                                <h3>Azure Blob Storage</h3>
-                                <p>Intermediate</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon">
-                            <div>
-                                <h3>Power BI</h3>
-                                <p>Basic</p>
-                            </div>
-                        </article>
-                        <article>
-                            <img src="./assets/checkmark.png" alt="Experience icon" class="icon">
-                            <div>
-                                <h3>Git</h3>
-                                <p>Intermediate</p>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#projects'">
-    </section>
-    <section id="projects">
-        <p class="section__text__p1">Browse My Recent</p>
-        <h1 class="title">Projects</h1>
-        <div class="experience-details-container">
-            <div class="about-containers">
-            <div class="details-container color-container">
-                <div class="article-container">
-                    <img src="./assets/ai_image.jpg" alt="Project 1" class="project-img">
-                </div>
-                <h2 class="experience-sub-title project-title">Trip Planner using Crew AI</h2>
-                <div class="btn-container">
-                    <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/prabhatjosyula/trip-planner'">GitHub</button>
-                    <button class="btn btn-color-2" onclick="window.open('./assets/Crew AI.pdf')">Description</button>
+  <!-- HERO -->
 
-                </div>
-            </div>
-            <div class="details-container color-container">
-                <div class="article-container">
-                    <img src="./assets/95baa365-fedb-4d3c-8b1f-22735e3bb77a.webp" alt="Project 2" class="project-img">
-                </div>
-                <h2 class="experience-sub-title project-title">Azure Image Processor</h2>
-                <div class="btn-container">
-                    <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/prabhatjosyula/azure-image-processor'">GitHub</button>
-                    <button class="btn btn-color-2" onclick="window.open('./assets/Azure Image Processor.pdf')">Description</button>
+  <section id="profile">
 
-                </div>
-            </div>
-            <div class="details-container color-container">
-                <div class="article-container">
-                    <img src="./assets/flight.webp" alt="Project 3" class="project-img">
-                </div>
-                <h2 class="experience-sub-title project-title">Flight Experience Analytics</h2>
-                <div class="btn-container">
-                    <button class="btn btn-color-2 project-btn" onclick="location.href='https://github.com/prabhatjosyula/Airline-Sentiment-Insights'">GitHub</button>
-                    <button class="btn btn-color-2" onclick="window.open('./assets/Airline Sentiment Insights Dashboard.pdf')">Description</button>
+    <div class="section__pic-container">
+      <img src="./assets/WhatsApp Image 2025-05-07 at 21.43.26_1c93cd0a.jpg" alt="Profile Picture">
+    </div>
 
-                </div></div>
-            </div>
-        </div>
-        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#contact'">
-    </section>
-    <section id="contact">
-        <p class="section__text__p1">Get In Touch</p>
-        <h1 class="title">Contact Me</h1>
-        <div class="contact-info-upper-container">
-            <div class="contact-info-container">
-                <img src="./assets/email.png" alt="Email Icon" class="icon contact-icon email-icon">
-                <p><a href="mailto:srinijos98@gmail.com">Email</a></p>
-            </div>
-            <div class="contact-info-container">
-                <img src="./assets/linkedin.png" alt="LinkedIn Icon" class="icon contact-icon">
-                <p><a href="https://www.linkedin.com/in/srinijosyula">LinkedIn</a></p>
-            </div>
+    <div class="section__text">
+
+      <p class="section__text__p1">Hello, I'm</p>
+
+      <h1 class="title">
+        Srinivasa <br>
+        Prabhat Josyula
+      </h1>
+
+      <p class="section__text__p2">
+        Software Engineer • Cloud • AI • Analytics
+      </p>
+
+      <p class="hero-description">
+        Technology professional focused on scalable software systems,
+        cloud technologies, AI-powered solutions, and analytics-driven
+        engineering. Passionate about building impactful digital experiences.
+      </p>
+
+      <div class="btn-container">
+
+        <button class="btn btn-color-1"
+          onclick="window.open('./assets/SrinivasaPrabhatJosyula.pdf')">
+          Download CV
+        </button>
+
+        <button class="btn btn-color-2"
+          onclick="location.href='#contact'">
+          Contact Me
+        </button>
+
+      </div>
+
+      <div id="socials-container">
+
+        <img
+          src="./assets/linkedin.png"
+          class="icon"
+          onclick="window.open('https://www.linkedin.com/in/srinijosyula')"
+        >
+
+        <img
+          src="./assets/github.png"
+          class="icon"
+          onclick="window.open('https://github.com/prabhatjosyula')"
+        >
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ABOUT -->
+
+  <section id="about">
+
+    <h1 class="section-title">About Me</h1>
+
+    <div class="about-container">
+
+      <div class="about-card">
+        <h3>Professional Background</h3>
+
+        <p>
+          Master's graduate in Computer Science from the University of Dayton
+          with experience in enterprise application development, cloud
+          technologies, analytics, and scalable software systems.
+        </p>
+      </div>
+
+      <div class="about-card">
+        <h3>Current Role</h3>
+
+        <p>
+          Software Engineer at Magnetic Infotech working on digital evaluation
+          and package tracking systems using React.js, React Native, C#, .NET,
+          and MS SQL Server.
+        </p>
+      </div>
+
+      <div class="about-card">
+        <h3>Interests</h3>
+
+        <p>
+          Interested in AI engineering, workflow automation, analytics
+          dashboards, cloud computing, data-driven systems, and modern frontend
+          technologies.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SKILLS -->
+
+  <section id="experience">
+
+    <h1 class="section-title">Skills</h1>
+
+    <div class="skills-grid">
+
+      <div class="skill-card">
+        <h3>Programming</h3>
+
+        <ul>
+          <li>Python</li>
+          <li>Java</li>
+          <li>C</li>
+          <li>C#</li>
+          <li>SQL</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <h3>Frontend</h3>
+
+        <ul>
+          <li>React.js</li>
+          <li>React Native</li>
+          <li>HTML/CSS</li>
+          <li>JavaScript</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <h3>Cloud & AI</h3>
+
+        <ul>
+          <li>Azure</li>
+          <li>OpenAI APIs</li>
+          <li>Crew AI</li>
+          <li>Prompt Engineering</li>
+        </ul>
+      </div>
+
+      <div class="skill-card">
+        <h3>Analytics & Tools</h3>
+
+        <ul>
+          <li>Power BI</li>
+          <li>Git</li>
+          <li>MS SQL Server</li>
+          <li>Wireshark</li>
+        </ul>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PROJECTS -->
+
+  <section id="projects">
+
+    <h1 class="section-title">Projects</h1>
+
+    <div class="projects-grid">
+
+      <div class="project-card">
+
+        <img src="./assets/ai_image.jpg">
+
+        <div class="project-content">
+
+          <h3>Trip Planner using Crew AI</h3>
+
+          <p>
+            AI-powered travel planning assistant built using Crew AI
+            for automated itinerary generation and intelligent planning.
+          </p>
+
+          <div class="btn-container">
+
+            <button class="btn btn-color-1"
+              onclick="window.open('https://github.com/prabhatjosyula/trip-planner')">
+              GitHub
+            </button>
+
+          </div>
+
         </div>
 
-    </section>
-    <footer>
-        <nav>
-            <div class="nav-links-container">
-                <ul class="nav-links">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#experience">Experience</li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </nav>
-        <p>Copyright &#169; 2025 Srinivasa Prabhat Josyula. All Rights Reserved.</p>
-    </footer>
-    <script src="script.js"></script>
+      </div>
+
+      <div class="project-card">
+
+        <img src="./assets/95baa365-fedb-4d3c-8b1f-22735e3bb77a.webp">
+
+        <div class="project-content">
+
+          <h3>Azure Image Processor</h3>
+
+          <p>
+            Cloud-based image processing solution leveraging Azure services,
+            automation workflows, and scalable backend integration.
+          </p>
+
+          <div class="btn-container">
+
+            <button class="btn btn-color-1"
+              onclick="window.open('https://github.com/prabhatjosyula/azure-image-processor')">
+              GitHub
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="project-card">
+
+        <img src="./assets/flight.webp">
+
+        <div class="project-content">
+
+          <h3>Flight Experience Analytics</h3>
+
+          <p>
+            Sentiment analysis and analytics dashboard project using
+            AI techniques and Power BI visualization tools.
+          </p>
+
+          <div class="btn-container">
+
+            <button class="btn btn-color-1"
+              onclick="window.open('https://github.com/prabhatjosyula/Airline-Sentiment-Insights')">
+              GitHub
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CONTACT -->
+
+  <section id="contact">
+
+    <h1 class="section-title">Contact Me</h1>
+
+    <div class="contact-container">
+
+      <div class="contact-card">
+
+        <h3>Email</h3>
+
+        <p>
+          <a href="mailto:srinijos98@gmail.com">
+            srinijos98@gmail.com
+          </a>
+        </p>
+
+      </div>
+
+      <div class="contact-card">
+
+        <h3>LinkedIn</h3>
+
+        <p>
+          <a href="https://www.linkedin.com/in/srinijosyula" target="_blank">
+            linkedin.com/in/srinijosyula
+          </a>
+        </p>
+
+      </div>
+
+      <div class="contact-card">
+
+        <h3>GitHub</h3>
+
+        <p>
+          <a href="https://github.com/prabhatjosyula" target="_blank">
+            github.com/prabhatjosyula
+          </a>
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    <p>
+      © 2026 Srinivasa Prabhat Josyula. All Rights Reserved.
+    </p>
+  </footer>
+
 </body>
 </html>
